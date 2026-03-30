@@ -1,5 +1,6 @@
 const{test,expect}= require("@playwright/test")
-const {login } = require("./login.spec.js")
+const{login}=require("../utils/login")
+
 test.setTimeout(5 * 60 * 1000)
 
 test("NDE Admin Module", async ({ page }) => {
