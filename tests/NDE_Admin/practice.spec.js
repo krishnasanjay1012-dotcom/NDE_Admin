@@ -1,5 +1,5 @@
 const {test,expect}=require("@playwright/test")
-const {login } = require("./login.spec.js")
+const {login } = require("./login.js")
 
 test("practice",async ({ page })=>{
    await page.goto("https://practicetestautomation.com/practice-test-login/")
