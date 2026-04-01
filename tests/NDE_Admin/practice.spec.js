@@ -1,16 +1,10 @@
 const {test,expect}=require("@playwright/test")
-const{login}=require("../utils/login.spec")
+const {login } = require("./login.spec.js")
 
 test("practice",async ({ page })=>{
-   await login(page)
-   const cname="Guna guna"
-   await page.getByRole("button",{name:"Customers"}).click()
-   const row=page.locator("tr",{hasText:cname}).first()
-   await row.scrollIntoViewIfNeeded()
-   if(expect(row).toBeVisible()){
-    console.log("visible")
-   }
-   else{
-    console.log("not visible")
-   }
+   await page.goto("https://practicetestautomation.com/practice-test-login/")
+await page.locator('[name="username"]').fill("student")
+await page.locator('[name="password"]').fill("Password123")
+await page.getByRole("button",{name:"Submit"}).click()
+await expect(page).toHaveURL("https://practicetestautomation.com/logged-in-successfully/")
 })
