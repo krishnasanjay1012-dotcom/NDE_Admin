@@ -1,5 +1,5 @@
 const{test,expect}= require("@playwright/test")
-const {login } = require("./login.js")
+const {login } = require("./login.spec.js")
 
 test.setTimeout(5 * 60 * 1000)
 
