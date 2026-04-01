@@ -1,5 +1,5 @@
 const {test,expect}=require("@playwright/test")
-const {login } = require("./login.spec.js")
+// const {login } = require("./login.spec.js")
 
 test("practice",async ({ page })=>{
 //    await page.goto("https://practicetestautomation.com/practice-test-login/")
@@ -9,7 +9,7 @@ test("practice",async ({ page })=>{
 // await expect(page).toHaveURL("https://practicetestautomation.com/logged-in-successfully/")
 // await page.getByRole("link",{name:"Log out"}).click()
 // await expect(page).toHaveURL("https://practicetestautomation.com/practice-test-login/")
-  await page.goto("https://adminv2.nowdigitaleasy.com/login")
+  await page.goto("https://superadmin.nowdigitaleasy.com/login")
   await page.locator('[name="userName"]').fill("iaaxin")
   await page.locator('[name="password"]').fill("King_Guna")
   await page.getByRole("button",{name:"Login"}).click()
