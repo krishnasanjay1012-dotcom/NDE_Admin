@@ -1,6 +1,6 @@
 const{test,expect}= require("@playwright/test")
 const {login } = require("./login.spec.js")
-test.setTimeout(5 * 60 * 1000)
+test.setTimeout(5 * 20 * 1000)
 
 test("NDE Admin Customer", async ({ page }) => {
   
@@ -162,10 +162,6 @@ async function Expectedcontactdelete(page) {
 
   console.log("Contact actually deleted")
 }
-
-
-  
-
 
 }
 )
