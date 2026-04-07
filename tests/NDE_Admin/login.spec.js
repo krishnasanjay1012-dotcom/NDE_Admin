@@ -8,6 +8,7 @@ await page.locator('[name="password"]').fill("King_Guna")
 await page.getByRole("button",{name:"Login"}).click()
 await page.waitForTimeout(3000)
 await expect(page).toHaveURL("https://superadmin.nowdigitaleasy.com/home")
+console.log("Current URL:",await page.url())
 console.log("login passed")
 }
 

@@ -137,7 +137,7 @@ async function Contactcreate(page,i){
 }
 
 async function Expectedcontactdelete(page) {
-    const ecname="Vijayan"
+    const ecname="Bala"
      await page.getByRole("button",{name:"Customers"}).click()
      await page.getByRole('combobox', { name: 'Rows per page:' }).click()
      await page.getByRole('option', { name: '100' }).click()
