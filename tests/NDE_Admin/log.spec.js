@@ -1,7 +1,7 @@
 const {test,expect}=require("@playwright/test")
 test.setTimeout(5 * 30 * 1000)
 
-test("practice",async ({ page })=>{
+test("NDE Admin Login",async ({ page })=>{
   await page.goto("https://superadmin.nowdigitaleasy.com/login")
 await page.locator('[name="userName"]').fill("iaaxin")
 await page.locator('[name="password"]').fill("King_Guna")

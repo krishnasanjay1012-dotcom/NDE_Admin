@@ -24,4 +24,4 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Run Test
-        run: npx playwright test log.spec.js --project=chromium
+        run: npx playwright test Customer.spec.js --project=chromium

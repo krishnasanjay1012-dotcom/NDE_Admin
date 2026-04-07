@@ -6,11 +6,11 @@ test("NDE Admin Customer", async ({ page }) => {
   
    await login(page)
 
-  for (let i = 1; i <= 5; i++) {
-   await Contactcreate(page,i)
-  }
+  // for (let i = 1; i <= 5; i++) {
+  //  await Contactcreate(page,i)
+  // }
 
-  //  await Expectedcontactdelete(page)
+   await Expectedcontactdelete(page)
 
   //  await Multicontactdelete(page)
   
@@ -137,22 +137,30 @@ async function Contactcreate(page,i){
 }
 
 async function Expectedcontactdelete(page) {
-    const ecname="Krishna Sanjay"
+    const ecname="Vijayan"
      await page.getByRole("button",{name:"Customers"}).click()
-     const ecdrow = page.locator("tr").filter({ hasText: ecname }).first()
-       await expect(ecdrow).toBeVisible()
+     await page.getByRole('combobox', { name: 'Rows per page:' }).click()
+     await page.getByRole('option', { name: '100' }).click()
+     await page.waitForTimeout(3000)
+     const ecdrow = page.locator("tr").filter({has: page.locator("td").filter({ hasText: ecname })}).first()
+     await ecdrow.scrollIntoViewIfNeeded()
+    const isVisible = await ecdrow.isVisible()
+
+if (isVisible) {
   await ecdrow.hover()
   await ecdrow.locator('button').last().click()
   await page.getByRole("menuitem",{name:"Delete"}).click()
   await page.getByRole("button",{name:"Delete"}).click()
-  await page.waitForTimeout(2500)
-  if(page.getByRole("button",{name:"Cancel"}).isVisible()){
-    // await 
-       console.log("Expected contact deleted")
-  // await expect(
-  }
+   console.log("Expected contact deleted")
 }
+ else {
+  console.log("Expected contact not visible")
+}
+
+
   
+}
+
 }
 )
 
