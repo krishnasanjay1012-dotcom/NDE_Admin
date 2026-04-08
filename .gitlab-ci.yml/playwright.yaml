@@ -1,14 +1,15 @@
 stages:
   - test
 
-playwright-tests:
+playwright-login-test:
   stage: test
   image: mcr.microsoft.com/playwright:v1.44.0-jammy
 
   script:
+    # Checkout automatically happens in GitLab runner
     - npm ci
-    - npx playwright install --with-deps
-    - npx playwright test Customer.spec.js --project=chromium
+    - npx playwright install chromium --with-deps
+    - npx playwright test tests/NDE_Admin/Customer.spec.js --project=chromium
 
   artifacts:
     when: always
