@@ -1,15 +1,10 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "@playwright/test": "^1.59.1"
-  }
-}
-=======
+  "name": "playwright-automation",
+  "version": "1.0.0",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.0"
   }
 }
->>>>>>> f969f3762ca57a9972f4f07079f5631dbaf6493e
