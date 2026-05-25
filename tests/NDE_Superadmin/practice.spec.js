@@ -1,13 +1,14 @@
 import { test, expect } from "@playwright/test";
-test.setTimeout(5 * 30 * 1000)
-const validename="iaaxin"
-const validpassword="King_Guna"
+import { LoginPage } from "../utils/log.js"
+test.setTimeout(5 * 10 * 1000)
+const validename = "iaaxin"
+const validpassword = "King_Guna"
 
 test.beforeEach(async({page}) =>{
   await page.goto("https://superadmin.nowdigitaleasy.com/login")
 })
 
-async function login(page) {
+async function login1(page) {
   await page.locator('[name="userName"]').fill(validename);
 
   await page.locator('[name="password"]').fill(validpassword);
@@ -47,12 +48,32 @@ test("NDE Invalid username", async ({page}) => {
 // // valid Username & Password Test
 // // ==========================================================
 
+
+
 test("NDE valid username & Password", async ({page}) => {
-  await page.locator('[name="userName"]').fill(validename)
-  await page.locator('[name="password"]').fill(validpassword)
-  await page.getByRole("button",{name:"Login"}).click()
-  await expect(page).toHaveURL("https://superadmin.nowdigitaleasy.com/home")
-  console.log("valid username & password case passed")
+
+    const loginPage = new LoginPage(page)
+
+    await page.goto(
+      "https://superadmin.nowdigitaleasy.com/login"
+    )
+
+    await loginPage.login(
+        validename,
+        validpassword
+    )
+
+    await expect(page).toHaveURL(
+      "https://superadmin.nowdigitaleasy.com/home"
+    )
+
+    console.log("login success")
+
+//   await page.locator('[name="userName"]').fill(validename)
+//   await page.locator('[name="password"]').fill(validpassword)
+//   await page.getByRole("button",{name:"Login"}).click()
+//   await expect(page).toHaveURL("https://superadmin.nowdigitaleasy.com/home")
+//   console.log("valid username & password case passed")
 })
 
 // // ==========================================================
@@ -60,7 +81,7 @@ test("NDE valid username & Password", async ({page}) => {
 // // ==========================================================
 
 test("NDE Module Count", async ({page}) => {
-  await login(page)
+  await login1(page)
     console.log("Module Visibility 👇")
      await page.waitForTimeout(5000)
      const modulepage=page.locator('[class="MuiList-root MuiList-padding css-cyvzt1"]')
@@ -73,12 +94,12 @@ test("NDE Module Count", async ({page}) => {
      console.log(`Total Module : ${modulecount} ✅`)
 })
 
-// // ==========================================================
-// // Available Products Test
-// // ==========================================================
+// // // ==========================================================
+// // // Available Products Test
+// // // ==========================================================
 
 test("NDE Product Count", async ({page}) => {
-  await login(page)
+  await login1(page)
     console.log("Available Products 👇")
     await page.getByRole("button",{name:"Product",exact:true}).click()
     await page.waitForTimeout(5000)
@@ -91,12 +112,12 @@ test("NDE Product Count", async ({page}) => {
     console.log(`Total products : ${Productscount} ✅`)
 })
 
-// // ==========================================================
-// // Customer Status Ubdate Test
-// // ==========================================================
+// // // ==========================================================
+// // // Customer Status Ubdate Test
+// // // ==========================================================
 
 test("NDE Status Changing Test", async ({page}) => {
-  await login(page)
+  await login1(page)
     await page.getByRole("button",{name:"Customers",exact:true}).click()
     const customerrow= page.locator("tbody tr").nth(0)
     const customername=await customerrow.locator("p").nth(0).textContent()
@@ -121,12 +142,12 @@ test("NDE Status Changing Test", async ({page}) => {
     await page.waitForTimeout(5000)
 })
 
-// // ==========================================================
-// // Customer Creation Test
-// // ==========================================================
+// // // ==========================================================
+// // // Customer Creation Test
+// // // ==========================================================
 
 test("NDE Customer Crestion",async({page}) =>{
- await login(page)
+ await login1(page)
  const fname="Automation"
  const lname="Testing"
  const ename = page.locator("tbody tr").filter({has: page.getByText("sathya")})
